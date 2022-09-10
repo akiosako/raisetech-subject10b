@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +28,13 @@ public class UserController {
         return new ArrayList<>(userService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")//存在しないidを検索した場合エラーメッセージを返す
     public Optional<User> findById(@PathVariable int id, @RequestBody User user) {
         user.setId(id);
         return userService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping//バリデーション:nameに@NotEmpty
     public ResponseEntity<String> insertUser(@RequestBody InsertForm insertForm) {
         userService.insertUser(insertForm);
         URI uri = UriComponentsBuilder.fromUriString("http://localhost:8080")
@@ -44,7 +43,7 @@ public class UserController {
     }
 
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/{id}")//バリデーション：nameが空文字、nullの場合エラーメッセージを返す
     public ResponseEntity<Map<String, String>> updateUser(@PathVariable("id") int id,
                                                           @RequestBody UpdateForm updateForm) {
         updateForm.setId(id);
@@ -52,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")//存在しないidを指定した場合エラーメッセージを返す
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable("id") int id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(Map.of("message", "name successfully deleted"));
