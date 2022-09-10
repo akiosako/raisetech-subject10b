@@ -8,7 +8,5 @@ import lombok.Setter;
 public class UpdateForm {
     private int id;
     private String name;
-
-
 }
 

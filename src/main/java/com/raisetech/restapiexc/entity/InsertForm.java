@@ -7,5 +7,4 @@ import lombok.Setter;
 @Setter
 public class InsertForm {
     private String name;
-
 }

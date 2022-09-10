@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
-
     }
 
     @Override
@@ -31,21 +30,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertUser(InsertForm insertForm) {
         userMapper.insertUser(insertForm);
-
-
     }
 
     @Override
     public void updateUser(UpdateForm updateForm) {
         userMapper.updateUser(updateForm);
-
-
     }
 
     @Override
     public void deleteUser(int id) {
         userMapper.deleteuser(id);
     }
-
-
 }
