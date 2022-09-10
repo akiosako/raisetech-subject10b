@@ -1,0 +1,65 @@
+package com.raisetech.restapiexc.controller;
+
+import com.raisetech.restapiexc.entity.InsertForm;
+import com.raisetech.restapiexc.entity.UpdateForm;
+import com.raisetech.restapiexc.entity.User;
+import com.raisetech.restapiexc.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.validation.constraints.Positive;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@RequestMapping("/users")
+@RestController
+public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping
+    public List<User> findAll() {
+        return new ArrayList<>(userService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public Optional<User> findById(@PathVariable int id, @RequestBody User user) {
+        user.setId(id);
+        return userService.findById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> insertUser(@RequestBody InsertForm insertForm) {
+        userService.insertUser(insertForm);
+        URI uri = UriComponentsBuilder.fromUriString("http://localhost:8080")
+                .path("/users/id").build().toUri();
+        return ResponseEntity.created(uri).body("name successfully created");
+    }
+
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateUser(@PathVariable("id") int id,
+                                                          @RequestBody UpdateForm updateForm) {
+        updateForm.setId(id);
+        userService.updateUser(updateForm);
+        return ResponseEntity.ok(Map.of("message", "name successfully updated"));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable("id") int id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok(Map.of("message", "name successfully deleted"));
+    }
+
+
+}
+
+
+
