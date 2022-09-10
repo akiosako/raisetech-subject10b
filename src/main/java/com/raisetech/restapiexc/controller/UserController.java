@@ -43,6 +43,7 @@ public class UserController {
 
     @PatchMapping("/{id}")//バリデーション：nameが空文字、nullの場合エラーメッセージを返す
     public ResponseEntity<Map<String, String>> updateUser(@PathVariable("id") int id, @RequestBody UpdateForm updateForm) {
+        updateForm.setId(id);
         userService.updateUser(updateForm);
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
