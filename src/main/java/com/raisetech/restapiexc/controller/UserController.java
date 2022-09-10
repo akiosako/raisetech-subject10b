@@ -29,8 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")//存在しないidを検索した場合エラーメッセージを返す
-    public Optional<User> findById(@PathVariable int id, @RequestBody User user) {
-        user.setId(id);
+    public Optional<User> findById(@PathVariable int id) {
         return userService.findById(id);
     }
 
@@ -44,9 +43,7 @@ public class UserController {
 
 
     @PatchMapping("/{id}")//バリデーション：nameが空文字、nullの場合エラーメッセージを返す
-    public ResponseEntity<Map<String, String>> updateUser(@PathVariable("id") int id,
-                                                          @RequestBody UpdateForm updateForm) {
-        updateForm.setId(id);
+    public ResponseEntity<Map<String, String>> updateUser(@PathVariable("id") int id, @RequestBody UpdateForm updateForm) {
         userService.updateUser(updateForm);
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
