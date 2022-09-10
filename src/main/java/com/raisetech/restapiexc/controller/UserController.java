@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping
     public List<User> findAll() {
-        return new ArrayList<>(userService.findAll());
+        return userService.findAll();
     }
 
     @GetMapping("/{id}")//存在しないidを検索した場合エラーメッセージを返す
