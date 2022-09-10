@@ -13,7 +13,7 @@ public interface UserMapper {
     @Select("SELECT * FROM users;")
     List<User> findAll();
 
-    @Select("SELECT * FROM user WHERE id = #{id}")
+    @Select("SELECT * FROM users WHERE id = #{id}")
     Optional<User> findById(int id);
 
     @Insert("INSERT INTO users(name) VALUES(#{name}) ")
