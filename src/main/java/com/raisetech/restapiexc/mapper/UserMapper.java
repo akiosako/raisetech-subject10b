@@ -23,6 +23,6 @@ public interface UserMapper {
     void updateUser(UpdateForm updateForm);
 
     @Delete("DELETE FROM users WHERE id = #{id}")
-    void deleteuser(int id);
+    void deleteUser(int id);
 }
 
