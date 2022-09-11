@@ -1,8 +1,8 @@
-package com.raisetech.restapiexc.service;
+package com.raisetech.crudsample.service;
 
-import com.raisetech.restapiexc.entity.InsertForm;
-import com.raisetech.restapiexc.entity.UpdateForm;
-import com.raisetech.restapiexc.entity.User;
+import com.raisetech.crudsample.entity.InsertForm;
+import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.entity.User;
 
 import java.util.List;
 import java.util.Optional;

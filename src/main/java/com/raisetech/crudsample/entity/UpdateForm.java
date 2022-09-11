@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc.entity;
+package com.raisetech.crudsample.entity;
 
 import lombok.Getter;
 import lombok.Setter;
