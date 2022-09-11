@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc;
+package com.raisetech.crudsample;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

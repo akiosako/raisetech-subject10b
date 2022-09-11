@@ -1,8 +1,8 @@
-package com.raisetech.restapiexc.mapper;
+package com.raisetech.crudsample.mapper;
 
-import com.raisetech.restapiexc.entity.InsertForm;
-import com.raisetech.restapiexc.entity.UpdateForm;
-import com.raisetech.restapiexc.entity.User;
+import com.raisetech.crudsample.entity.InsertForm;
+import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

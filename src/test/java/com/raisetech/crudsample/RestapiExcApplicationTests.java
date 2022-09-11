@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc;
+package com.raisetech.crudsample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

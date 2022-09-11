@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc.controller.exceptionhandler;
+package com.raisetech.crudsample.controller.exceptionhandler;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException() {
