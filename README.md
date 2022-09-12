@@ -14,4 +14,64 @@ D:IDで検索したユーザーの登録を削除
 
 **実装予定**  
 バリデーション  
-例外処理
+例外処理  
+
+## **小山先生の宿題**　　
+entityパッケージ配下にform、response、DBのテーブルに対応したクラスが混在しています。そもそもentityとは?
+
+Serviceの実装も読んでおくと良いです。
+特に「ControllerとServiceで実装するロジックの責任分界点について」です。そうするとform/response、DBのテーブルに対応したクラスが同じパッケージ内に同居させないようにするという結論になるかと思います。
+
+参考：Terasoluna  
+entityの実装  
+:http://terasolunaorg.github.io/guideline/current/ja/ImplementationAtEachLayer/DomainLayer.html#entity  
+Serviceの実装  
+:http://terasolunaorg.github.io/guideline/current/ja/ImplementationAtEachLayer/DomainLayer.html#service
+
+↑これをいきなり読んでも全く分からなかった(*ﾉωﾉ)
+
+### **「Entity」とは、データベースのテーブル構造を表したオブジェクト**
+データベースの1行を1インスタンスと対応させるためのクラスが「Entityクラス」
+- DBに登録・更新する値を入れておく。
+- DBから取得した値を保持しておく。
+- クラス名とテーブル名はたいてい同じになることが多い。
+```
+結論：Mapperに対応したクラスをentityとする。  
+私の場合は「User」のみentityとする。  
+```  
+**「form」とは**
+- HTTPのPOSTメソッドで送信された値(=formタグの中身)が入っている。
+- formタグの中身なのでBeanの名前もform・・・って覚えておけばいいと思う。
+- クラス名は「xxxForm」となることが多い。
+```
+私の場合insertForm、updateFormをformとする。
+```
+**「dto」とは**
+- Data Transfer Objectの略
+- データ交換用のBean
+- データ交換とは、例えばformからentityへの変換をさす
+```
+今回は役目がなかったので指定なし
+```
+
+
+**Serviceの実装について**
+- serviceの役割  
+  1.Controllerに対して**業務ロジック**を提供  
+  2.**トランザクション境界**を宣言
+
+業務ロジックとは  
+アプリケーションで使用する業務データの参照、更新、整合性チェックおよびビジネスルールに関わる各種処理で構成される  
+**業務データの参照および更新処理をRepository(またはO/R Mapper)に委譲**し、Serviceでは**ビジネスルールに関わる処理の実装に専念**することを推奨
+
+**簡単に言うと**  
+アプリケーションをプレゼンテーション・ビジネスロジック・データアクセスの 3 つに分けたとき、「プレゼンテーションでもデータアクセスでもない部分がビジネスロジック」  
+https://qiita.com/os1ma/items/25725edfe3c2af93d735
+
+## **ControllerとServiceで実装するロジックの責任分界点**
+- クライアントからリクエストされたデータに対する単項目チェック、相関項目チェックはController側(Bean ValidationまたはSpring Validator)で行う。
+- Serviceに渡すデータへの変換処理(Bean変換、型変換、形式変換など)は、ServiceではなくController側で行う。
+- ビジネスルールに関わる処理はServiceで行う。業務データへのアクセスは、RepositoryまたはO/R Mapperに委譲する。
+- ServiceからControllerに返却するデータ（クライアントへレスポンスするデータ）に対する値の変換処理(型変換、形式変換など)は、Serviceではなく、Controller側（Viewクラスなど）で行う。  
+
+

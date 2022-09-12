@@ -1,7 +1,7 @@
 package com.raisetech.crudsample.controller;
 
-import com.raisetech.crudsample.entity.InsertForm;
-import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.form.InsertForm;
+import com.raisetech.crudsample.form.UpdateForm;
 import com.raisetech.crudsample.entity.User;
 import com.raisetech.crudsample.service.UserService;
 import org.springframework.http.ResponseEntity;

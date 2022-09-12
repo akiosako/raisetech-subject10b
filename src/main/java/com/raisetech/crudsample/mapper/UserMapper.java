@@ -1,7 +1,7 @@
 package com.raisetech.crudsample.mapper;
 
-import com.raisetech.crudsample.entity.InsertForm;
-import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.form.InsertForm;
+import com.raisetech.crudsample.form.UpdateForm;
 import com.raisetech.crudsample.entity.User;
 import org.apache.ibatis.annotations.*;
 
