@@ -73,5 +73,40 @@ https://qiita.com/os1ma/items/25725edfe3c2af93d735
 - Serviceに渡すデータへの変換処理(Bean変換、型変換、形式変換など)は、ServiceではなくController側で行う。
 - ビジネスルールに関わる処理はServiceで行う。業務データへのアクセスは、RepositoryまたはO/R Mapperに委譲する。
 - ServiceからControllerに返却するデータ（クライアントへレスポンスするデータ）に対する値の変換処理(型変換、形式変換など)は、Serviceではなく、Controller側（Viewクラスなど）で行う。  
+## 【ユーザー登録APIのControllerの処理について】
+### **小山先生課題**
+- .path("/users/id") ですがidの箇所は登録処理によって新たに採番されたユーザーのidを設定するようにしてください
+  /users/1 のようになるイメージです
+- http://localhost:8080のようにハードコードするのでなく動的にhostを取得できるようにしましょう
+- curlまたはPostmanを使って動作確認するときにレスポンスヘッダーにLocation: http://localhost:8080/users/1 のように新規作成されたリソースへのURLがLocationヘッダーとして登録されていることを確認してください
+- PRの概要にLocationヘッダーを指定する理由を考えて記載お願いします。
+
+**理解**
+- 登録処理によって新しく採番されたユーザーidを設定するようにする
+- URLを動的に取得(変化に強いコードを書く)
+- それらがきちんと設定されているかPostmanで動作を確認
+- PR概要に「なぜLocationヘッダーを指定するのか」を記載
+
+### **そもそもUriComponentsBuilderとは**
+```
+URIの構築を簡単に出来るやつ 
+```
+**URIとは？**  
+Uniform Resource Identifierの略  
+一定の書式によってリソース(資源)を指し示す識別子
+## **UriComponentsBuilder**
+```
+1.静的ファクトリメソッドの 1 つで UriComponentsBuilder を作成する (fromPath(String) や fromUri(URI) など)   
+2.それぞれのメソッド（scheme(String)、userInfo(String)、host(String)、port(int)、path(String)、pathSegment(String...)、queryParam(String, Object...)、fragment(String) を介してさまざまな URI コンポーネントを設定します。  
+3.build() メソッドを使用して UriComponents インスタンスを構築します。
+```
+**静的ファクトリメソッド**  
+インスタンスを返す単なる static メソッドのこと
+
+## 何故Locationヘッダを指定するのか
+フォームの入力ミスをその場でユーザにフィードバックしたい    
+入力が正しい場合のみ Location ヘッダによってリダイレクトする，という構造にするとわかりやすいから  
+
+
 
 
