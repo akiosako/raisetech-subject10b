@@ -1,9 +1,9 @@
-package com.raisetech.restapiexc.service;
+package com.raisetech.crudsample.service;
 
-import com.raisetech.restapiexc.entity.InsertForm;
-import com.raisetech.restapiexc.entity.UpdateForm;
-import com.raisetech.restapiexc.entity.User;
-import com.raisetech.restapiexc.mapper.UserMapper;
+import com.raisetech.crudsample.entity.InsertForm;
+import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.entity.User;
+import com.raisetech.crudsample.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
-
     }
 
     @Override
@@ -31,21 +30,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insertUser(InsertForm insertForm) {
         userMapper.insertUser(insertForm);
-
-
     }
 
     @Override
     public void updateUser(UpdateForm updateForm) {
         userMapper.updateUser(updateForm);
-
-
     }
 
     @Override
     public void deleteUser(int id) {
-        userMapper.deleteuser(id);
+        userMapper.deleteUser(id);
+
     }
-
-
 }

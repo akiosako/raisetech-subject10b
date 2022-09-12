@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc.entity;
+package com.raisetech.crudsample.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,5 @@ import lombok.Setter;
 public class UpdateForm {
     private int id;
     private String name;
-
-
 }
 

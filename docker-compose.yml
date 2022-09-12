@@ -10,4 +10,4 @@ services:
       MYSQL_USER: vatic
       MYSQL_PASSWORD: francois0413
     ports:
-      - 3307:3306ri
+      - 3307:3306

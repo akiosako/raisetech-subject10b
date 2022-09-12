@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc.entity;
+package com.raisetech.crudsample.entity;
 
 import lombok.Data;
 
@@ -11,6 +11,5 @@ public class UserResponse {
     public UserResponse(User user) {
         this.id = user.getId();
         this.name = user.getName();
-
     }
 }

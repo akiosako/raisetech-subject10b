@@ -1,4 +1,4 @@
-package com.raisetech.restapiexc.entity;
+package com.raisetech.crudsample.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,5 +7,4 @@ import lombok.Setter;
 @Setter
 public class InsertForm {
     private String name;
-
 }

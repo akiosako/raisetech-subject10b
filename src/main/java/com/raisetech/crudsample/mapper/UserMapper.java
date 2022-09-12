@@ -1,8 +1,8 @@
-package com.raisetech.restapiexc.mapper;
+package com.raisetech.crudsample.mapper;
 
-import com.raisetech.restapiexc.entity.InsertForm;
-import com.raisetech.restapiexc.entity.UpdateForm;
-import com.raisetech.restapiexc.entity.User;
+import com.raisetech.crudsample.entity.InsertForm;
+import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface UserMapper {
     @Select("SELECT * FROM users;")
     List<User> findAll();
 
-    @Select("SELECT * FROM user WHERE id = #{id}")
+    @Select("SELECT * FROM users WHERE id = #{id}")
     Optional<User> findById(int id);
 
     @Insert("INSERT INTO users(name) VALUES(#{name}) ")
@@ -23,6 +23,6 @@ public interface UserMapper {
     void updateUser(UpdateForm updateForm);
 
     @Delete("DELETE FROM users WHERE id = #{id}")
-    void deleteuser(int id);
+    void deleteUser(int id);
 }
 
