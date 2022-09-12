@@ -1,4 +1,4 @@
-package com.raisetech.crudsample.entity;
+package com.raisetech.crudsample.form;
 
 import lombok.Getter;
 import lombok.Setter;

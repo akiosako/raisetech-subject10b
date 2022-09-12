@@ -1,7 +1,7 @@
 package com.raisetech.crudsample.service;
 
-import com.raisetech.crudsample.entity.InsertForm;
-import com.raisetech.crudsample.entity.UpdateForm;
+import com.raisetech.crudsample.form.InsertForm;
+import com.raisetech.crudsample.form.UpdateForm;
 import com.raisetech.crudsample.entity.User;
 
 import java.util.List;
