@@ -7,7 +7,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Getter
 @Setter
-
 public class InsertForm {
     private String name;
     private int id;
