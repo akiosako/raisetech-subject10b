@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping//バリデーション:nameに@NotEmpty
     public ResponseEntity<String> insertUser(@RequestBody InsertForm insertForm,UriComponentsBuilder uriComponentsBuilder) {
         userService.insertUser(insertForm);
-        URI uri = uriComponentsBuilder.path("/users/{id}").buildAndExpand().toUri();
+        URI uri = uriComponentsBuilder.path("/users/{id}").build().toUri();
         return ResponseEntity.created(uri).body("name successfully created");
     }
 
