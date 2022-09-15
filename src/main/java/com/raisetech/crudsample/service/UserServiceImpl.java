@@ -29,8 +29,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertUser(InsertForm insertForm) {
+    public int insertUser(InsertForm insertForm) {
         userMapper.insertUser(insertForm);
+        return insertForm.getId();
     }
 
     @Override

@@ -12,7 +12,7 @@ public interface UserService {
 
     Optional<User> findById(int id);
 
-    void insertUser(InsertForm insertForm);
+    int insertUser(InsertForm insertForm);
 
     void updateUser(UpdateForm updateForm);
 
