@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertUser(InsertForm insertForm) {
-        System.out.println(insertForm.getId());
         userMapper.insertUser(insertForm);
     }
 
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UpdateForm updateForm) {
         userMapper.updateUser(updateForm);
     }
-    
+
     @Override
     public void deleteUser(int id) {
         userMapper.deleteUser(id);
