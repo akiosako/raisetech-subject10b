@@ -4,6 +4,7 @@ import com.raisetech.crudsample.form.InsertForm;
 import com.raisetech.crudsample.form.UpdateForm;
 import com.raisetech.crudsample.entity.User;
 import com.raisetech.crudsample.mapper.UserMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertUser(InsertForm insertForm) {
+        System.out.println(insertForm.getId());
         userMapper.insertUser(insertForm);
     }
 
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UpdateForm updateForm) {
         userMapper.updateUser(updateForm);
     }
-
+    
     @Override
     public void deleteUser(int id) {
         userMapper.deleteUser(id);

@@ -17,6 +17,7 @@ public interface UserMapper {
     Optional<User> findById(int id);
 
     @Insert("INSERT INTO users(name) VALUES(#{name}) ")
+    @Options(useGeneratedKeys = true,keyProperty = "id")
     void insertUser(InsertForm insertForm);
 
     @Update("UPDATE users SET name = #{name} WHERE id = #{id}")
