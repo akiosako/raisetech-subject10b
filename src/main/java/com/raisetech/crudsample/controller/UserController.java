@@ -51,24 +51,23 @@ public class UserController {
     }
 
     @PostMapping//バリデーションエラーが発生した場合は、MethodArgumentNotValidExceptionがスローされる。
-    public ResponseEntity<String> insertUser(@RequestBody @Validated InsertForm insertForm, UriComponentsBuilder
-            uriComponentsBuilder) {
+    public ResponseEntity<String> insertUser(@RequestBody @Validated InsertForm insertForm,
+                                             UriComponentsBuilder uriComponentsBuilder) {
         int newId = userService.insertUser(insertForm);
         URI uri = uriComponentsBuilder.path("users/{id}").buildAndExpand(newId).toUri();
         return ResponseEntity.created(uri).body("name successfully created");
     }
 
-
     @PatchMapping("/{id}")//存在しないidに成功レスポンス×、文字列を入れた場合400が返る。nameがnull、空文字だと400、スペースだと400
-    public ResponseEntity<Map<String, String>> updateUser(@PathVariable int id,
+    public ResponseEntity<Map<String, String>> updateUser(@PathVariable @Validated int id,
                                                           @RequestBody @Validated UpdateForm updateForm) {
         updateForm.setId(id);
         userService.updateUser(updateForm);
         return ResponseEntity.ok(Map.of("message", "name successfully updated"));
     }
-
-    @DeleteMapping("/{id}")//存在しないid成功レスポンス×,文字列を入れると400,
-    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable int id) {
+        
+    @DeleteMapping("/{id}")//存在しないid成功レスポンス×,文字列を入れると400
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable @Validated int id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(Map.of("message", "name successfully deleted"));
     }

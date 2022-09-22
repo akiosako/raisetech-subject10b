@@ -3,8 +3,10 @@ package com.raisetech.crudsample.service;
 import com.raisetech.crudsample.entity.User;
 import com.raisetech.crudsample.form.InsertForm;
 import com.raisetech.crudsample.form.UpdateForm;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     List<User> findAll();
