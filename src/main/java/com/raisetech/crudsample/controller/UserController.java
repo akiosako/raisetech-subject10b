@@ -51,25 +51,28 @@ public class UserController {
     }
 
     @PostMapping//バリデーションエラーが発生した場合は、MethodArgumentNotValidExceptionがスローされる。
-    public ResponseEntity<String> insertUser(@RequestBody @Validated InsertForm insertForm,
-                                             UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<Map<String, String>> insertUser(@RequestBody @Validated InsertForm insertForm,
+                                                          UriComponentsBuilder uriComponentsBuilder) {
         int newId = userService.insertUser(insertForm);
         URI uri = uriComponentsBuilder.path("users/{id}").buildAndExpand(newId).toUri();
-        return ResponseEntity.created(uri).body("name successfully created");
+        return ResponseEntity.created(uri).body(Map.of("id:" + newId, "created Name:" + insertForm.getName()));
     }
 
-    @PatchMapping("/{id}")//存在しないidに成功レスポンス×、文字列を入れた場合400が返る。nameがnull、空文字だと400、スペースだと400
-    public ResponseEntity<Map<String, String>> updateUser(@PathVariable @Validated int id,
+    @PatchMapping("/{id}")//nameがnull、空文字だと400、スペースだと400
+    public ResponseEntity<Map<String, String>> updateUser(@PathVariable int id,
                                                           @RequestBody @Validated UpdateForm updateForm) {
+        userService.findById(id);//ServiceImplでfindByIdメソッドに例外処理をしているため、そちらでidが存在しているかいないかを判断
         updateForm.setId(id);
         userService.updateUser(updateForm);
-        return ResponseEntity.ok(Map.of("message", "name successfully updated"));
+        return ResponseEntity.ok(Map.of("id:" + updateForm.getId(), "Updated Name:" + updateForm.getName()));
     }
-        
+
+
     @DeleteMapping("/{id}")//存在しないid成功レスポンス×,文字列を入れると400
-    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable @Validated int id) {
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable int id) {
+        User findUser = userService.findById(id);
         userService.deleteUser(id);
-        return ResponseEntity.ok(Map.of("message", "name successfully deleted"));
+        return ResponseEntity.ok(Map.of("Deleted id:" + id, "Deleted Name:" + findUser.getName()));
     }
 }
 
