@@ -152,5 +152,27 @@ DELETE
 
 - PathVariableのValidatedは不要と判断し、削除しました。
 
+## リクエストごとの実行結果
 
+POST:リクエスト
+![](../Users/vatic/OneDrive/画像/post-req.png)
+POST:レスポンス
+![](../Users/vatic/OneDrive/画像/post-res.png)
+GET(findAll):POSTの動作確認
+![](../Users/vatic/OneDrive/画像/get-res.png)
+PATCH:リクエスト
+![](../Users/vatic/OneDrive/画像/patch-req.png)
+PATCH:レスポンス
+![](../Users/vatic/OneDrive/画像/patch-res.png)
+DELETE:リクエスト
+![](../Users/vatic/OneDrive/画像/delete-req.png)
+DELETE:レスポンス
+![](../Users/vatic/OneDrive/画像/delete-res.png)
 
+POST:データをinsert  
+![](../Users/vatic/OneDrive/画像/post-namecreated.png)
+GET(findById)
+![](../Users/vatic/OneDrive/画像/findByid.png)
+GET:findByIdが存在しない場合
+![](../Users/vatic/OneDrive/画像/exception.png)
+他、バリデーション等しています。
