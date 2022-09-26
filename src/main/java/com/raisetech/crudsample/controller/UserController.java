@@ -39,7 +39,6 @@ public class UserController {
         return new ResponseEntity(body, HttpStatus.NOT_FOUND);
     }
 
-
     @GetMapping
     public List<User> findAll() {
         return userService.findAll();
@@ -55,24 +54,25 @@ public class UserController {
                                                           UriComponentsBuilder uriComponentsBuilder) {
         int newId = userService.insertUser(insertForm);
         URI uri = uriComponentsBuilder.path("users/{id}").buildAndExpand(newId).toUri();
-        return ResponseEntity.created(uri).body(Map.of("id:" + newId, "created Name:" + insertForm.getName()));
+        return ResponseEntity.created(uri).body(Map.of(
+                "name:", insertForm.getName(),
+                "message:", "successfully created"));
     }
 
     @PatchMapping("/{id}")//nameがnull、空文字だと400、スペースだと400
-    public ResponseEntity<Map<String, String>> updateUser(@PathVariable int id,
-                                                          @RequestBody @Validated UpdateForm updateForm) {
+    public ResponseEntity updateUser(@PathVariable int id,
+                                     @RequestBody @Validated UpdateForm updateForm) {
         userService.findById(id);//ServiceImplでfindByIdメソッドに例外処理をしているため、そちらでidが存在しているかいないかを判断
         updateForm.setId(id);
         userService.updateUser(updateForm);
-        return ResponseEntity.ok(Map.of("id:" + updateForm.getId(), "Updated Name:" + updateForm.getName()));
+        return ResponseEntity.noContent().build();
     }
-
 
     @DeleteMapping("/{id}")//存在しないid成功レスポンス×,文字列を入れると400
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable int id) {
         User findUser = userService.findById(id);
         userService.deleteUser(id);
-        return ResponseEntity.ok(Map.of("Deleted id:" + id, "Deleted Name:" + findUser.getName()));
+        return ResponseEntity.ok(Map.of("Deleted Name:", findUser.getName()));
     }
 }
 
