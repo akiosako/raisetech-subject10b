@@ -56,8 +56,8 @@ public class UserController {
         URI uri = uriComponentsBuilder.path("users/{id}").buildAndExpand(newId).toUri();
         return ResponseEntity.created(uri).body(Map.of(
                 "id", newId,
-                "name", insertForm.getName(),
-                "message", "successfully created"));
+                "created_name", insertForm.getName(),
+                "message", "name successfully created"));
     }
 
     @PatchMapping("/{id}")//nameがnull、空文字だと400、スペースだと400
@@ -68,7 +68,7 @@ public class UserController {
         userService.updateUser(updateForm);
         return ResponseEntity.ok(Map.of(
                 "id", String.valueOf(id),
-                "name", updateForm.getName(),
+                "updated_name", updateForm.getName(),
                 "message", "name successfully updated"));
     }
 
@@ -78,7 +78,7 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok(Map.of(
                 "id", findUser.getId(),
-                "Deleted Name", findUser.getName(),
+                "deleted_name", findUser.getName(),
                 "message", "name successfully deleted"));
     }
 }
